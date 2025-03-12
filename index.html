@@ -127,6 +127,8 @@
                         <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
                     </li>
                 </ul>
+                <button class="copy-button" onclick="copySignature()">Скопировать подпись</button>
+                <div class="success-message" id="successMessage">Подпись скопирована!</div>
             </div>
         </div>
     </div>
@@ -148,10 +150,28 @@
             document.getElementById('sigSkype').textContent = skypeText;
             document.getElementById('sigSkype').setAttribute('href', skypeLink);
         }
+
+        function copySignature() {
+            const signature = document.getElementById('signature').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = signature;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Показываем сообщение об успешном копировании
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 2000);
+        }
     </script>
 
 </body>
 </html>
+
 
 
 
