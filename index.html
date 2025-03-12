@@ -30,23 +30,6 @@
             color: #357AF6;
             text-decoration: none;
         }
-        .copy-button {
-            margin-top: 10px;
-            padding: 8px 12px;
-            background: #357AF6;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .copy-button:hover {
-            background: #285bb5;
-        }
-        .success-message {
-            display: none;
-            color: green;
-            margin-top: 5px;
-        }
 
         /* Новый стиль для вертикальной линии */
         .signature-table {
@@ -91,6 +74,23 @@
         .contact-info img {
             margin-right: 8px; /* Отступ между иконкой и текстом */
         }
+
+        /* Стиль для кнопки копирования */
+        .copy-button-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .copy-button {
+            padding: 8px 12px;
+            background: #357AF6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .copy-button:hover {
+            background: #285bb5;
+        }
     </style>
 </head>
 <body>
@@ -127,10 +127,13 @@
                         <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
                     </li>
                 </ul>
-                <button class="copy-button" onclick="copySignature()">Скопировать подпись</button>
-                <div class="success-message" id="successMessage">Подпись скопирована!</div>
             </div>
         </div>
+    </div>
+
+    <!-- Кнопка для копирования подписи -->
+    <div class="copy-button-container">
+        <button class="copy-button" onclick="copySignature()">Копировать подпись</button>
     </div>
 
     <script>
@@ -152,20 +155,23 @@
         }
 
         function copySignature() {
-            const signature = document.getElementById('signature').innerText;
-            const textarea = document.createElement('textarea');
-            textarea.value = signature;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+            const signatureElement = document.getElementById('signature');
+            const range = document.createRange();
+            range.selectNodeContents(signatureElement);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
 
-            // Показываем сообщение об успешном копировании
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 2000);
+            try {
+                // Пытаемся выполнить копирование
+                document.execCommand('copy');
+                alert('Подпись скопирована!');
+            } catch (err) {
+                alert('Ошибка при копировании');
+            }
+
+            // Снимаем выделение
+            selection.removeAllRanges();
         }
     </script>
 
