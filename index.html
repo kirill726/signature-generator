@@ -23,6 +23,8 @@
         }
         .contact-list li {
             margin: 4px 0;
+            display: flex;
+            align-items: center; /* Иконка и текст выровнены по вертикали */
         }
         .contact-list a {
             color: #357AF6;
@@ -55,6 +57,7 @@
             padding-left: 18px;
             display: flex;
             flex-direction: column;
+            margin-left: -2mm; /* Сдвигаем блок с ссылками и иконками на 2 мм влево */
         }
         .signature-info h2 {
             text-transform: uppercase;
@@ -80,6 +83,14 @@
             margin-left: 20px;
             margin-right: 20px;
         }
+        /* Стиль для списка контактов, чтобы иконки и текст располагались по вертикали */
+        .contact-info {
+            display: flex;
+            align-items: center; /* Иконка слева, а текст справа */
+        }
+        .contact-info img {
+            margin-right: 8px; /* Отступ между иконкой и текстом */
+        }
     </style>
 </head>
 <body>
@@ -97,19 +108,22 @@
     <h2>Превью подписи</h2>
     <div class="signature-container" id="signature">
         <div class="signature-table">
-            <img src="https://images.uusimmatkasinot.com/logos/fairspin.png?w=1074&auto=compress&auto=format" alt="Fairspin Casino" width="100">
+            <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" alt="Fairspin Casino" width="100">
             <div class="vertical-line"></div> <!-- Вертикальная линия между изображением и информацией -->
             <div class="signature-info">
                 <h2 id="sigName">Bona Fides</h2>
                 <p id="sigJobTitle">Manager</p>
                 <ul class="contact-list">
-                    <li><span style="color: black; font-weight: 700; font-size: 16px;">w: </span>
+                    <li class="contact-info">
+                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/internet.png" alt="internet">
                         <a href="https://fairspin.io">https://fairspin.io</a>
                     </li>
-                    <li><span style="color: black; font-weight: 700; font-size: 16px;">t: </span>
-                        <span id="sigTelegram">@example_telegram</span>
+                    <li class="contact-info">
+                        <img width="25" height="25" src="https://img.icons8.com/sf-ultralight-filled/25/telegram.png" alt="telegram">
+                        <a id="sigTelegram" href="https://t.me/example_telegram">@example_telegram</a>
                     </li>
-                    <li><span style="color: black; font-weight: 700; font-size: 16px;">s: </span>
+                    <li class="contact-info">
+                        <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/skype.png" alt="skype">
                         <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
                     </li>
                 </ul>
@@ -117,58 +131,22 @@
         </div>
     </div>
 
-    <!-- Кнопка для копирования HTML кода подписи для вставки в почту -->
-    <button class="copy-button" onclick="copySignature()">Скопировать HTML код для вставки в подпись на почте</button>
-    <p class="success-message" id="successMessage">Код успешно скопирован!</p>
-
-    <!-- Кнопка для копирования визуальной подписи -->
-    <button class="copy-button" onclick="copyVisualSignature()">Скопировать визуальную подпись</button>
-    <p class="success-message" id="visualSuccessMessage">Визуальная подпись успешно скопирована!</p>
-
     <script>
         function updateSignature() {
-            document.getElementById("sigName").textContent = document.getElementById("name").value;
-            document.getElementById("sigJobTitle").textContent = document.getElementById("jobTitle").value;
-            document.getElementById("sigTelegram").textContent = document.getElementById("telegram").value;
-            document.getElementById("sigSkype").textContent = document.getElementById("skypeText").value;
-            document.getElementById("sigSkype").href = document.getElementById("skypeLink").value;
-        }
+            // Получаем значения из формы
+            const name = document.getElementById('name').value;
+            const jobTitle = document.getElementById('jobTitle').value;
+            const telegram = document.getElementById('telegram').value;
+            const skypeLink = document.getElementById('skypeLink').value;
+            const skypeText = document.getElementById('skypeText').value;
 
-        // Функция для копирования HTML кода подписи
-        function copySignature() {
-            const signatureHTML = document.getElementById("signature").innerHTML;
-            const textarea = document.createElement("textarea");
-            textarea.value = signatureHTML;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
-
-            const successMessage = document.getElementById("successMessage");
-            successMessage.style.display = "block";
-            setTimeout(() => { successMessage.style.display = "none"; }, 2000);
-        }
-
-        // Функция для копирования визуальной подписи (картинка + текст)
-        function copyVisualSignature() {
-            const signatureVisual = document.getElementById("signature").cloneNode(true);
-            const tempDiv = document.createElement("div");
-            tempDiv.appendChild(signatureVisual);
-            document.body.appendChild(tempDiv);
-
-            // Создаем и копируем в буфер данные
-            const range = document.createRange();
-            range.selectNodeContents(tempDiv);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            document.execCommand("copy");
-
-            document.body.removeChild(tempDiv);
-
-            const successMessage = document.getElementById("visualSuccessMessage");
-            successMessage.style.display = "block";
-            setTimeout(() => { successMessage.style.display = "none"; }, 2000);
+            // Обновляем элементы в превью
+            document.getElementById('sigName').textContent = name;
+            document.getElementById('sigJobTitle').textContent = jobTitle;
+            document.getElementById('sigTelegram').textContent = telegram;
+            document.getElementById('sigTelegram').setAttribute('href', `https://t.me/${telegram.replace('@', '')}`);
+            document.getElementById('sigSkype').textContent = skypeText;
+            document.getElementById('sigSkype').setAttribute('href', skypeLink);
         }
     </script>
 
