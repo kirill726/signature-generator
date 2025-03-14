@@ -4,88 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Генератор подписи</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .signature-container {
-            margin-top: 20px;
-            padding: 10px;
-            border: 3px solid #ccc;
-            display: inline-block;
-            background: #fff;
-        }
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .contact-list li {
-            margin: 4px 0;
-            display: flex;
-            align-items: center;
-        }
-        .contact-list a {
-            color: #357AF6;
-            text-decoration: none;
-        }
-        .signature-table {
-            display: flex;
-            align-items: center;
-        }
-        .signature-info {
-            padding-left: 18px;
-            display: flex;
-            flex-direction: column;
-            margin-left: -2mm;
-        }
-        .signature-info h2 {
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 900;
-            line-height: 1.3;
-            margin: 0 0 4px;
-            color: black;
-        }
-        .signature-info p {
-            text-transform: uppercase;
-            color: #ebbe7d;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin: 0 0 6px;
-        }
-        .vertical-line {
-            height: 80px;
-            width: 2px;
-            background-color: #ebbe7d;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-        .contact-info {
-            display: flex;
-            align-items: center;
-        }
-        .contact-info img {
-            margin-right: 8px;
-        }
-        .copy-button-container {
-            margin-top: 10px;
-            text-align: center;
-        }
-        .copy-button {
-            padding: 8px 12px;
-            background: #357AF6;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .copy-button:hover {
-            background: #285bb5;
-        }
-    </style>
 </head>
 <body>
 
@@ -100,25 +18,25 @@
     </form>
 
     <h2>Превью подписи</h2>
-    <div class="signature-container" id="signature">
-        <div class="signature-table">
-            <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" alt="Fairspin Casino" width="100">
-            <div class="vertical-line"></div>
-            <div class="signature-info">
-                <h2 id="sigName">Bona Fides</h2>
-                <p id="sigJobTitle">Manager</p>
-                <ul class="contact-list">
-                    <li class="contact-info">
-                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/internet.png" alt="internet">
-                        <a href="https://bonafides.team">https://bonafides.team</a>
+    <div class="signature-container" id="signature" style="margin-top: 20px; padding: 10px; border: 3px solid #ccc; display: inline-block; background: #fff; font-family: Arial, sans-serif;">
+        <div class="signature-table" style="display: flex; align-items: center;">
+            <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" alt="Fairspin Casino" width="100" style="width: 100px;">
+            <div class="vertical-line" style="height: 80px; width: 2px; background-color: #ebbe7d; margin-left: 20px; margin-right: 20px;"></div>
+            <div class="signature-info" style="padding-left: 18px; display: flex; flex-direction: column; margin-left: -2mm;">
+                <h2 id="sigName" style="text-transform: uppercase; font-size: 15px; font-weight: 900; line-height: 1.3; margin: 0 0 4px; color: black;">Bona Fides</h2>
+                <p id="sigJobTitle" style="text-transform: uppercase; color: #ebbe7d; font-size: 15px; font-weight: 700; line-height: 1.3; margin: 0 0 6px;">Manager</p>
+                <ul class="contact-list" style="list-style: none; padding: 0; margin: 0;">
+                    <li class="contact-info" style="margin: 4px 0; display: flex; align-items: center;">
+                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/internet.png" alt="internet" style="width: 24px; height: 24px; margin-right: 8px;">
+                        <a href="https://bonafides.team" style="color: #357AF6; text-decoration: none;">https://bonafides.team</a>
                     </li>
-                    <li class="contact-info">
-                        <img width="25" height="25" src="https://img.icons8.com/sf-ultralight-filled/25/telegram.png" alt="telegram">
-                        <a id="sigTelegram" href="https://t.me/example_telegram">@example_telegram</a>
+                    <li class="contact-info" style="margin: 4px 0; display: flex; align-items: center;">
+                        <img width="25" height="25" src="https://img.icons8.com/sf-ultralight-filled/25/telegram.png" alt="telegram" style="width: 25px; height: 25px; margin-right: 8px;">
+                        <a id="sigTelegram" href="https://t.me/example_telegram" style="color: #357AF6; text-decoration: none;">@example_telegram</a>
                     </li>
-                    <li class="contact-info">
-                        <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/skype.png" alt="skype">
-                        <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
+                    <li class="contact-info" style="margin: 4px 0; display: flex; align-items: center;">
+                        <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/skype.png" alt="skype" style="width: 24px; height: 24px; margin-right: 8px;">
+                        <a id="sigSkype" href="skype:example.skype?call" style="color: #357AF6; text-decoration: none;">example.skype</a>
                     </li>
                 </ul>
             </div>
@@ -163,9 +81,9 @@
             });
         }
     </script>
+
 </body>
 </html>
-
 
 
 
