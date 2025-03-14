@@ -13,38 +13,27 @@
             margin-top: 20px;
             padding: 10px;
             border: 3px solid #ccc;
-            display: inline-block;
             background: #fff;
-        }
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .contact-list li {
-            margin: 4px 0;
-            display: flex;
-            align-items: center;
-        }
-        .contact-list a {
-            color: #357AF6;
-            text-decoration: none;
+            display: inline-block;
         }
         .signature-table {
-            display: flex;
-            align-items: center;
+            width: 100%;
+            border-collapse: collapse;
+            display: table;
         }
-        .signature-info {
-            padding-left: 18px;
-            display: flex;
-            flex-direction: column;
-            margin-left: -2mm;
+        .signature-table td {
+            vertical-align: middle;
+            padding: 10px;
+        }
+        /* Тонкая вертикальная линия */
+        .vertical-line {
+            width: 1px;  /* Сделано тоньше */
+            background-color: #ebbe7d;
         }
         .signature-info h2 {
             text-transform: uppercase;
             font-size: 15px;
             font-weight: 900;
-            line-height: 1.3;
             margin: 0 0 4px;
             color: black;
         }
@@ -53,22 +42,24 @@
             color: #ebbe7d;
             font-size: 15px;
             font-weight: 700;
-            line-height: 1.3;
             margin: 0 0 6px;
         }
-        .vertical-line {
-            height: 80px;
-            width: 2px;
-            background-color: #ebbe7d;
-            margin-left: 20px;
-            margin-right: 20px;
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        .contact-info {
+        .contact-list li {
             display: flex;
             align-items: center;
+            margin: 4px 0;
         }
-        .contact-info img {
+        .contact-list img {
             margin-right: 8px;
+        }
+        .contact-list a {
+            color: #357AF6;
+            text-decoration: none;
         }
         .copy-button-container {
             margin-top: 10px;
@@ -101,28 +92,32 @@
 
     <h2>Превью подписи</h2>
     <div class="signature-container" id="signature">
-        <div class="signature-table">
-            <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" alt="Fairspin Casino" width="100">
-            <div class="vertical-line"></div>
-            <div class="signature-info">
-                <h2 id="sigName">Bona Fides</h2>
-                <p id="sigJobTitle">Manager</p>
-                <ul class="contact-list">
-                    <li class="contact-info">
-                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/internet.png" alt="internet">
-                        <a href="https://bonafides.team">https://bonafides.team</a>
-                    </li>
-                    <li class="contact-info">
-                        <img width="25" height="25" src="https://img.icons8.com/sf-ultralight-filled/25/telegram.png" alt="telegram">
-                        <a id="sigTelegram" href="https://t.me/example_telegram">@example_telegram</a>
-                    </li>
-                    <li class="contact-info">
-                        <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/skype.png" alt="skype">
-                        <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" alt="Fairspin Casino" width="100">
+                </td>
+                <td class="vertical-line"></td>
+                <td class="signature-info">
+                    <h2 id="sigName">Bona Fides</h2>
+                    <p id="sigJobTitle">Manager</p>
+                    <ul class="contact-list">
+                        <li>
+                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/internet.png" alt="internet">
+                            <a href="https://bonafides.team">https://bonafides.team</a>
+                        </li>
+                        <li>
+                            <img width="25" height="25" src="https://img.icons8.com/sf-ultralight-filled/25/telegram.png" alt="telegram">
+                            <a id="sigTelegram" href="https://t.me/example_telegram">@example_telegram</a>
+                        </li>
+                        <li>
+                            <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/skype.png" alt="skype">
+                            <a id="sigSkype" href="skype:example.skype?call">example.skype</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="copy-button-container">
@@ -149,9 +144,9 @@
             try {
                 const signatureElement = document.getElementById('signature');
 
-                // Создаём временный элемент для копирования
+                // Создаём временный контейнер
                 const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = signatureElement.outerHTML;
+                tempDiv.innerHTML = signatureElement.innerHTML;
                 document.body.appendChild(tempDiv);
 
                 // Копируем HTML-код
@@ -159,7 +154,7 @@
                 const clipboardItem = new ClipboardItem({ 'text/html': blob });
 
                 await navigator.clipboard.write([clipboardItem]);
-                alert('Подпись скопирована!');
+                alert('Подпись скопирована в нужном формате!');
 
                 // Удаляем временный элемент
                 document.body.removeChild(tempDiv);
