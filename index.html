@@ -12,7 +12,7 @@
         .signature-container {
             margin-top: 20px;
             padding: 10px;
-            border: 3px solid #ccc; 
+            border: 3px solid #ccc;
             display: inline-block;
             background: #fff;
         }
@@ -89,12 +89,6 @@
         .copy-button:hover {
             background: #285bb5;
         }
-
-        /* Скрытый контейнер для копируемого текста */
-        .hidden-signature {
-            position: absolute;
-            left: -9999px;
-        }
     </style>
 </head>
 <body>
@@ -140,9 +134,6 @@
         <button class="copy-button" onclick="copySignature()">Копировать подпись</button>
     </div>
 
-    <!-- Скрытый контейнер для копируемого содержимого -->
-    <div id="hiddenSignature" class="hidden-signature"></div>
-
     <script>
         function updateSignature() {
             const name = document.getElementById('name').value;
@@ -157,44 +148,32 @@
             document.getElementById('sigTelegram').setAttribute('href', `https://t.me/${telegram.replace('@', '')}`);
             document.getElementById('sigSkype').textContent = skypeText;
             document.getElementById('sigSkype').setAttribute('href', skypeLink);
-
-            // Обновляем скрытый контейнер для копирования
-            const signatureHTML = `
-                <img src="https://nodepositbonuses.top/wp-content/uploads/2024/08/Fairspinlogo.png" width="100">
-                <div style="display: inline-block; margin-left: 20px;">
-                    <h2>${name}</h2>
-                    <p>${jobTitle}</p>
-                    <ul>
-                        <li><a href="https://bonafides.team">https://bonafides.team</a></li>
-                        <li><a href="https://t.me/${telegram.replace('@', '')}">@${telegram}</a></li>
-                        <li><a href="${skypeLink}">${skypeText}</a></li>
-                    </ul>
-                </div>
-            `;
-            document.getElementById('hiddenSignature').innerHTML = signatureHTML;
         }
 
         function copySignature() {
-            const hiddenSignature = document.getElementById('hiddenSignature');
+            const signatureElement = document.getElementById('signature');
             const range = document.createRange();
-            range.selectNodeContents(hiddenSignature);
+            range.selectNodeContents(signatureElement);
             const selection = window.getSelection();
             selection.removeAllRanges();
             selection.addRange(range);
 
             try {
+                // Пытаемся выполнить копирование
                 document.execCommand('copy');
                 alert('Подпись скопирована!');
             } catch (err) {
                 alert('Ошибка при копировании');
             }
 
+            // Снимаем выделение
             selection.removeAllRanges();
         }
     </script>
 
 </body>
 </html>
+
 
 
 
